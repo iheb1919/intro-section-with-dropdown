@@ -1,6 +1,17 @@
 import { useState } from 'react'
 import { ArrowDown, ArrowUp, Calendar, Close, Logo, Menu, Planning, Reminders, Todos } from '../svgs'
-const navigation = [
+type subType={
+    name:string,
+    link:string,
+    icon?:any
+}
+
+type navigationType={
+    name:string,
+    subs?:subType[],
+    link?:string
+}
+const navigation:navigationType[] = [
     {
         name:"Features",
         subs:[
@@ -30,15 +41,12 @@ const navigation = [
             {
                 name:"History",
                 link:"",
-                icon:""
             },{
                 name:"Our team",
                 link:"",
-                icon:""
             },{
                 name:"Blog",
                 link:"",
-                icon:""
             }
         ],
         link:""
@@ -119,7 +127,7 @@ export const MenuSub = ({nav,index,SubOpen,setSubOpen}:any) =>{
          md:absolute top-[80%]  left-0 bg-white md:shadow-ulShadow md:rounded-lg 
         ${SubOpen === index ?"max-h-[500px] ":"max-h-0" }`}>
             <ul className='md:mx-4 md:py-4 md:px-4 '>
-                {nav.subs.map((sub,i)=>{
+                {nav.subs.map((sub:subType,i:number)=>{
                     return(<li key={i} className='max-sm:ml-5 flex items-center md:justify-start  gap-4 py-3  ' > 
                     {sub?.icon} 
                     <p className=' text-nowrap' > {sub.name}</p>
