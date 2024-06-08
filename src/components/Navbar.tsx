@@ -3,7 +3,8 @@ import { ArrowDown, ArrowUp, Calendar, Close, Logo, Menu, Planning, Reminders, T
 type subType={
     name:string,
     link:string,
-    icon?:any
+    icon?:any,
+    className?:string
 }
 
 type navigationType={
@@ -18,19 +19,26 @@ const navigation:navigationType[] = [
             {
                 name:"Todo List",
                 link:"",
-                icon:<Todos  className="shrink-0"/>
+                icon:<Todos  className="shrink-0"/>,
+                className:'hover:bg-[#726CEE5a]'
             },{
                 name:"Calendar",
                 link:"",
-                icon: <Calendar className="shrink-0"/>
+                icon: <Calendar className="shrink-0"/>,
+                className:'hover:bg-[#4BB1DA5a]'
+
             },{
                 name:"Reminders",
                 link:"",
-                icon:<Reminders className="shrink-0"/>
+                icon:<Reminders className="shrink-0"/>,
+                className:'hover:bg-[#EDD5565a]'
+
             },{
                 name:"Planning",
                 link:"",
-                icon:<Planning className="shrink-0" />
+                icon:<Planning className="shrink-0" />,
+                className:'hover:bg-[#8E4CB65a]'
+
             }
         ],
         link:""
@@ -126,9 +134,9 @@ export const MenuSub = ({nav,index,SubOpen,setSubOpen}:any) =>{
         <div  className={`overflow-hidden  transition-[max-height] duration-[500ms] 
          md:absolute top-[80%]  left-0 bg-white md:shadow-ulShadow md:rounded-lg 
         ${SubOpen === index ?"max-h-[500px] ":"max-h-0" }`}>
-            <ul className='md:mx-4 md:py-4 md:px-4 '>
+            <ul className='md:mx-0 md:py-0 md:px-0 my-2 min-w-[150px]'>
                 {nav.subs.map((sub:subType,i:number)=>{
-                    return(<li key={i} className='max-sm:ml-5 flex items-center md:justify-start  gap-4 py-3  ' > 
+                    return(<li key={i} className={`px-5  max-sm:ml-5 flex items-center md:justify-start  gap-4 py-3  ${sub.className || 'hover:bg-gray-300'}`} > 
                     {sub?.icon} 
                     <p className=' text-nowrap' > {sub.name}</p>
                      </li>)
